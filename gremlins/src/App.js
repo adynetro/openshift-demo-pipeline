@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+        <p> but they master Openshift at least !... Proudly built and hosted on okd 4.9 </p>
       </header>
     </div>
   );
