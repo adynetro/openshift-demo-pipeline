@@ -1,0 +1,9 @@
+FROM node:16 AS build
+RUN mkdir -p /opt/build
+COPY ./gremlins/ /opt/build
+WORKDIR /opt/build
+RUN npm install && npm run build
+
+FROM nginx
+COPY --from=build /opt/build/build /usr/share/nginx/html
+EXPOSE 80
