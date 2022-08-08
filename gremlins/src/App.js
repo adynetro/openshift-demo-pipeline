@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React now !
+          Learn React now ! BLA
         </a>
         <p> but they master Openshift at least !... Proudly built and hosted on okd 4.9 </p>
       </header>
