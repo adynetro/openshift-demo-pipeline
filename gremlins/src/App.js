@@ -17,7 +17,7 @@ function App() {
         >
           Learn React now ! BLA
         </a>
-        <p> but they master Openshift at least !... Proudly built and hosted on okd 4.9 </p>
+        <p> but they master Openshift and Azure at least !... Proudly built on Github Actions and hosted on Azure </p>
       </header>
     </div>
   );
