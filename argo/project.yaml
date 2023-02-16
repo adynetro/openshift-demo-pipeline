@@ -10,3 +10,12 @@ spec:
   destinations:
     - namespace: devops
       server: https://kubernetes.default.svc
+  roles:
+    - description: project role to create and sync apps from a CI/CD pipeline
+      name: create-sync
+      policies:
+      - p, proj:gremlins:create-sync, applications, get, apps2deploy/*, allow
+      - p, proj:gremlins:create-sync, applications, create, apps2deploy/*, allow
+      - p, proj:gremlins:create-sync, applications, update, apps2deploy/*, allow
+      - p, proj:gremlins:create-sync, applications, delete, apps2deploy/*, allow
+      - p, proj:gremlins:create-sync, applications, sync, apps2deploy/*, allow
