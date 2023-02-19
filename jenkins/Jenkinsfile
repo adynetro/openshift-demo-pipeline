@@ -10,7 +10,7 @@ pipeline{
         stage("Checkout code"){
             steps{
                 git 'https://github.com/adynetro/openshift-demo-pipeline.git'
-                sh 'node -v'
+                sh 'nvm'
             }
         }
         stage("SBOM Analisys"){
