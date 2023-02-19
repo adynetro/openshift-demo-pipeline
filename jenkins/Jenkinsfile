@@ -14,7 +14,7 @@ pipeline{
         }
         stage("SBOM Analisys"){
           steps{
-            sh 'npm set prefix ~/.npm-global && npm install --global @cyclonedx/cyclonedx-npm &&  sh -c ~/.npm-global/bin/cyclonedx-npm --output-file bom.json ./gremlins/package.json'
+            sh 'npm set prefix ~/.npm-global && npm install --global @cyclonedx/cyclonedx-npm && cd gremlins && sh -c ~/.npm-global/bin/cyclonedx-npm --output-file bom.json'
             dependencyTrackPublisher artifact: "gremlins/bom.json", autoCreateProjects: false, dependencyTrackApiKey: '', dependencyTrackFrontendUrl: '', dependencyTrackUrl: '', projectId: 'f8fac26f-6c5b-47a0-92e1-dd0aa6a15176', synchronous: false
           }
         }
