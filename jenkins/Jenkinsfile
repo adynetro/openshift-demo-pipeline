@@ -12,6 +12,12 @@ pipeline{
                 git 'https://github.com/adynetro/openshift-demo-pipeline.git'
             }
         }
+        stage("SBOM Analisys"){
+          steps{
+            sh 'npm install --global @cyclonedx/cyclonedx-npm && cyclonedx-npm --output bom.json'
+            dependencyTrackPublisher artifact: "bom.json", autoCreateProjects: false, dependencyTrackApiKey: '', dependencyTrackFrontendUrl: '', dependencyTrackUrl: '', projectId: 'f8fac26f-6c5b-47a0-92e1-dd0aa6a15176', synchronous: false
+          }
+        }
         stage("Build code"){
             steps{
                 sh '''
@@ -20,13 +26,6 @@ pipeline{
                 npm run-script build
                 '''
             }
-        }
-        stage("SBOM Analisys"){
-          steps{
-            
-            sh 'npm install --global @cyclonedx/cyclonedx-npm && cyclonedx-npm --output bom.json'
-            dependencyTrackPublisher artifact: "bom.json", autoCreateProjects: false, dependencyTrackApiKey: '', dependencyTrackFrontendUrl: '', dependencyTrackUrl: '', projectId: 'f8fac26f-6c5b-47a0-92e1-dd0aa6a15176', synchronous: false
-          }
         }
         stage("Binary build"){
             steps{
