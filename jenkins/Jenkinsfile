@@ -24,8 +24,7 @@ pipeline{
         stage("SBOM Analisys"){
           steps{
             
-            sh 'npm install -g @cyclonedx/bom && 
-            /usr/local.bin/cyclonedx-node --output bom.json'
+            sh 'npm install -g @cyclonedx/bom && ./usr/local/bin/cyclonedx-node --output bom.json'
             dependencyTrackPublisher artifact: "bom.json", autoCreateProjects: false, dependencyTrackApiKey: '', dependencyTrackFrontendUrl: '', dependencyTrackUrl: '', projectId: 'f8fac26f-6c5b-47a0-92e1-dd0aa6a15176', synchronous: false
           }
         }
