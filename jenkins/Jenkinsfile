@@ -12,8 +12,9 @@ pipeline{
                 git 'https://github.com/adynetro/openshift-demo-pipeline.git'
             }
         }
-        stage("SBOM Analisys"){
+        stage("SBOM Package scan"){
           steps{
+            sh 'cd gremlins && npm install'
             sh 'npm set prefix ~/.npm-global && npm install --global @cyclonedx/cyclonedx-npm && cd gremlins && sh -c ~/.npm-global/bin/cyclonedx-npm --output-file bom.json'
             dependencyTrackPublisher artifact: "gremlins/bom.json", autoCreateProjects: false, dependencyTrackApiKey: '', dependencyTrackFrontendUrl: '', dependencyTrackUrl: '', projectId: 'f8fac26f-6c5b-47a0-92e1-dd0aa6a15176', synchronous: false
           }
@@ -22,7 +23,6 @@ pipeline{
             steps{
                 sh '''
                 cd gremlins
-                npm install
                 npm run-script build
                 '''
             }
